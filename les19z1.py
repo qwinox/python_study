@@ -1,5 +1,8 @@
+import random
 import pygame
 
+FPS = 30
+clock = pygame.time.Clock()
 
 class Circle():
     def __init__(self, win, color, x, y, rad):
@@ -8,7 +11,8 @@ class Circle():
         self.x = x
         self.y = y
         self.rad = rad
-        self.vel = 1
+        self.vel = 5
+        self.dir = 'right'
 
     def draw(self):
         pygame.draw.circle(self.win, self.color, (self.x, self.y), self.rad)
@@ -24,19 +28,35 @@ class Circle():
         elif keys[pygame.K_RIGHT] == 1:
             self.x += self.vel
 
+    def horizontal_movement(self):
+        if self.dir == 'right':
+            self.x += 50
+            if self.x > 500:
+                self.dir = 'left'
+        else:
+            self.x -= 50
+            if self.x < 0:
+                self.dir = 'right'
+
 
 pygame.init()
 win = pygame.display.set_mode((500, 500))
-new = Circle(win, (255, 255, 0), 250, 250, 30)
-temp = Circle(win, (255, 0, 0), 250, 350, 70)
+
+list_circles = []
+for i in range(100):
+    color = random.choices(range(256), k=3)
+    list_circles.append(Circle(win, color, i * 10, i*5, 30))
 
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             exit()
-    temp.draw()
-    new.draw()
-    new.move_by_keys()
+
+    clock.tick(FPS)
+
+    for i in list_circles:
+        i.draw()
+        i.horizontal_movement()
 
     pygame.display.update()
     win.fill((255, 255, 255))
