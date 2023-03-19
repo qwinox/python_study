@@ -44,7 +44,7 @@ player_pic = PhotoImage(file="image/enemy.png")
 
 canvas = tkinter.Canvas(master, bg='#ffd98c', width=WIDTH, height=HEIGHT)
 
-label = tkinter.Label(master, text="Привет!")
+label = tkinter.Label(master, text="Пока!")
 restart = tkinter.Button(master, text="Начать заново", command=prepare_and_start)
 restart.pack()
 label.pack()
