@@ -9,6 +9,8 @@ num2 = int(a[1])
 a = num1 // num2
 
 win = pygame.display.set_mode((num1, num1))
+print(num1, num2)
+print()
 
 while True:
     for event in pygame.event.get():
@@ -20,5 +22,6 @@ while True:
     for i in range(a):
         for j in range(a):
             if (i+j) % 2 == 0:
-                pygame.draw.rect(win, (0, 0, 0), (i , j, num1/num2, num1/num2))
+                pygame.draw.rect(win, (0, 0, 0), (i, j, num1/num2, num1/num2))
+                print(i, j, num1, num2)
     pygame.display.update()
