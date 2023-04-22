@@ -1,39 +1,29 @@
 import pygame
 pygame.init()
 win = pygame.display.set_mode((500, 500))
-x = 250
-y = 250
-step = 0.1
-color = (255, 0, 255)
+
+x = 100
+y = 50
+
+a = 100
+b = 50
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             exit()
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_LEFT]:
-        x -= step
-    elif keys[pygame.K_RIGHT]:
-        x += step
-    elif keys[pygame.K_UP]:
-        y -= step
-    elif keys[pygame.K_DOWN]:
-        y += step
-    else:
-        x = 250
-        y = 250
-    if x > 400 or x < 100:
-        step = 0.05
-        color = (255, 0, 0)
-    else:
-        step = 0.1
-        color = (255, 0, 255)
-    if y > 400 or y < 100:
-        step = 0.05
-        color = (255, 0, 0)
-    else:
-        step = 0.1
-        color = (255, 0, 255)
+
+    x = x + 1
+    if x > 500:
+        x = 0
+
+    b = b + 1
+    if b > 500:
+        b = 0
 
     win.fill((255, 255, 255))
-    pygame.draw.circle(win, color, (x, y), 50)
+    pygame.draw.rect(win, (255, 255, 0), (x, y, 100, 150))
+    pygame.draw.circle(win, (255, 0, 0), (a, b), 50)
     pygame.display.update()
+
+    pygame.time.delay(10)
